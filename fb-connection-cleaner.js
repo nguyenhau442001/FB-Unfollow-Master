@@ -106,8 +106,21 @@ function isValidProfileName(name) {
 }
 
 // Extract the profile names and log them
-const profileNames = extractProfileNames();
-console.log('Profile names:', profileNames);
+// Step 1: Extract all profile names
+let profileNames = extractProfileNames();
+
+// Step 2: List of profiles to ignore
+const ignoreProfileList = ["VinRobotics"];
+
+// Step 3: Convert ignore list to Set (fast lookup)
+const ignoreSet = new Set(ignoreProfileList);
+
+// Step 4: Remove ignored profiles from main list
+profileNames = profileNames.filter(
+  item => !ignoreSet.has(item)
+);
+
+console.log("Final profile list:", profileNames);
 
 // Function to process all profiles and show progress
 async function processAllProfiles() {
