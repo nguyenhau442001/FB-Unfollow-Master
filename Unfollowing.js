@@ -1,3 +1,5 @@
+const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs xlh3980 xvmahel x1n0sxbx x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x3x7a5m x1lkfr7t x1lbecb7 x1s688f xzsf02u';
+
 // Utility function to add a delay
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -35,7 +37,6 @@ async function clickElementByText(text) {
 
 // Function to unfollow a profile by name
 async function unfollowProfileByName(profileName) {
-    const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1lkfr7t x1lbecb7 x1s688f xzsf02u';
     const profileElements = Array.from(document.querySelectorAll(`span.${targetClassName.replace(/\s+/g, '.')}`));
     const profileElement = profileElements.find(el => el.textContent.trim() === profileName);
 
@@ -82,7 +83,6 @@ async function unfollowProfileByName(profileName) {
 
 // Function to extract profile names from span elements
 function extractProfileNames() {
-    const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs x1xmvt09 x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xudqn12 x676frb x1lkfr7t x1lbecb7 x1s688f xzsf02u';
     const spanElements = document.querySelectorAll(`span.${targetClassName.replace(/\s+/g, '.')}`);
     const profileNames = [];
 
