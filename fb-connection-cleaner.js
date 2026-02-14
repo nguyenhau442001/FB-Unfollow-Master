@@ -1,5 +1,19 @@
 const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs xlh3980 xvmahel x1n0sxbx x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x3x7a5m x1lkfr7t x1lbecb7 x1s688f xzsf02u';
 
+function findCloseButton() {
+  const closeBtn = document.querySelector(
+    'div[role="button"][aria-label*="Đóng bản xem trước liên kết"]'
+  );
+
+  if (closeBtn) {
+    console.log("✅ Found close button:", closeBtn);
+    return closeBtn;
+  }
+
+  console.log("❌ Close button not found");
+  return null;
+}
+
 // Utility function to add a delay
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -75,6 +89,13 @@ async function unfollowProfileByName(profileName) {
         } else {
             console.log(`"Đang theo dõi" button not found for ${profileName}`);
         }
+
+        const closeButton= findCloseButton();
+        if (closeButton) {
+            closeButton.click();
+            console.log("❎ Popup closed!");
+        }
+
     } else {
         console.log(`Profile ${profileName} not found`);
     }
