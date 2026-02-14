@@ -1,5 +1,17 @@
 const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs xlh3980 xvmahel x1n0sxbx x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x3x7a5m x1lkfr7t x1lbecb7 x1s688f xzsf02u';
 
+const closeButtonLabelVi = "Đóng bản xem trước liên kết"
+const closeButtonLabelEn = "Close link preview"
+
+const followingButtonLabelVi = "Đang theo dõi"
+const followingButtonLabelEn = "Following"
+
+const unfollowingButtonLabelVi = "Bỏ theo dõi"
+const unfollowingButtonLabelEn = "Unfollow"
+
+const updateButtonLabelVi = "Cập nhật"
+const updateButtonLabelEn = "Update"
+
 function getLanguageInfo() {
   const lang = document.documentElement.lang || "unknown";
 
@@ -8,9 +20,12 @@ function getLanguageInfo() {
   return lang;
 }
 
+const language = getLanguageInfo();
+
 function findCloseButton() {
+  const closeButtonLabel = language.startsWith("vi") ? closeButtonLabelVi : closeButtonLabelEn;
   const closeBtn = document.querySelector(
-    'div[role="button"][aria-label*="Đóng bản xem trước liên kết"]'
+    `div[role="button"][aria-label*="${closeButtonLabel}"]`
   );
 
   if (closeBtn) {
@@ -69,33 +84,43 @@ async function unfollowProfileByName(profileName) {
         await delay(1000);
 
         // Locate and click the "Đang theo dõi" button
-        const followButton = document.querySelector('div[aria-label="Đang theo dõi"]');
+        const followingLabel = language.startsWith("vi") ? followingButtonLabelVi : followingButtonLabelEn;
+        const unfollowingLabel = language.startsWith("vi") ? unfollowingButtonLabelVi : unfollowingButtonLabelEn;
+
+        const followButton = document.querySelector(
+            `div[aria-label="${followingLabel}"]`
+        );
+
         if (followButton) {
             followButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
             followButton.click();
-            console.log(`Clicked the "Đang theo dõi" button for ${profileName}`);
+            console.log(`Clicked the "${followingLabel}" button for ${profileName}`);
 
             // Add delay before proceeding
             await delay(1000);
 
-            // Click the "Bỏ theo dõi" button
-            await clickElementByText('Bỏ theo dõi');
+            // Click the button
+            await clickElementByText(unfollowingLabel);
 
             // Wait for the UI to update
             await delay(1000); // Increased delay for UI update
 
             // Check for and click the "Cập nhật" button if it exists
-            const updateButton = document.querySelector('div[aria-label="Cập nhật"]'); // Adjust selector as needed
+            const updateButtonLabel = language.startsWith("vi") ? updateButtonLabelVi : updateButtonLabelEn;
+            const updateButton = document.querySelector(
+                `div[aria-label="${updateButtonLabel}"]`
+            );
+
             if (updateButton) {
                 updateButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 updateButton.click();
-                console.log(`Clicked the "Cập nhật" button for ${profileName}`);
+                console.log(`Clicked the "${updateButtonLabel}" button for ${profileName}`);
 
                 // Wait for the UI to update
                 await delay(1000);
             }
         } else {
-            console.log(`"Đang theo dõi" button not found for ${profileName}`);
+            console.log(`"${followingLabel}" button not found for ${profileName}`);
         }
 
         const closeButton= findCloseButton();
