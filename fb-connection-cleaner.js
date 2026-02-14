@@ -37,8 +37,7 @@ async function clickElementByText(text) {
 
 // Function to unfollow a profile by name
 async function unfollowProfileByName(profileName) {
-    const profileElements = Array.from(document.querySelectorAll(`span.${targetClassName.replace(/\s+/g, '.')}`));
-    const profileElement = profileElements.find(el => el.textContent.trim() === profileName);
+    const profileElement = profileName.element;
 
     if (profileElement) {
         // Simulate hover
@@ -82,18 +81,20 @@ async function unfollowProfileByName(profileName) {
 }
 
 // Function to extract profile names from span elements
-function extractProfileNames() {
+function extractProfiles() {
     const spanElements = document.querySelectorAll(`span.${targetClassName.replace(/\s+/g, '.')}`);
-    const profileNames = [];
+    const profiles = [];
 
     spanElements.forEach(element => {
         const name = element.textContent.trim();
         if (name && isValidProfileName(name)) { // Filter based on name length
-            profileNames.push(name);
+            profiles.push({
+                name,
+                element: element,
+            });
         }
     });
-
-    return profileNames;
+    return profiles;
 }
 
 // Function to validate if a name is likely a profile name
@@ -107,7 +108,7 @@ function isValidProfileName(name) {
 
 // Extract the profile names and log them
 // Step 1: Extract all profile names
-let profileNames = extractProfileNames();
+let profileNames = extractProfiles();
 
 // Step 2: List of profiles to ignore
 const ignoreProfileList = ["VinRobotics"];
