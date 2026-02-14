@@ -1,5 +1,13 @@
 const targetClassName = 'x193iq5w xeuugli x13faqbe x1vvkbs xlh3980 xvmahel x1n0sxbx x1lliihq x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x4zkp8e x3x7a5m x1lkfr7t x1lbecb7 x1s688f xzsf02u';
 
+function getLanguageInfo() {
+  const lang = document.documentElement.lang || "unknown";
+
+  console.log("🌍 Facebook language detected:", lang);
+
+  return lang;
+}
+
 function findCloseButton() {
   const closeBtn = document.querySelector(
     'div[role="button"][aria-label*="Đóng bản xem trước liên kết"]'
