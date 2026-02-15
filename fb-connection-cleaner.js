@@ -172,7 +172,7 @@ const ignoreSet = new Set(ignoreProfileList);
 
 // Step 4: Remove ignored profiles from main list
 profileNames = profileNames.filter(
-  item => !ignoreSet.has(item)
+  item => !ignoreSet.has(item.name)
 );
 
 console.log("Final profile list:", profileNames);
